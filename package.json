@@ -1,0 +1,23 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "This is Namaste react by sachin",
+  "main": "hello.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sachin-p96/namaste-react-2.git"
+  },
+  "keywords": [],
+  "author": "Sachin P",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sachin-p96/namaste-react-2/issues"
+  },
+  "homepage": "https://github.com/Sachin-p96/namaste-react-2#readme",
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  }
+}
