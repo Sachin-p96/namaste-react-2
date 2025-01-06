@@ -2,7 +2,7 @@
   "name": "y",
   "version": "1.0.0",
   "description": "This is Namaste react by sachin",
-  "main": "hello.js",
+  "main": "App.js",
   "scripts": {
     "test": "jest"
   },
