@@ -1,8 +1,14 @@
+body {
+  background-color: beige;
+}
 .header {
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
-  background-color: brown;
+  background-color: rgb(118, 190, 1);
+  color: #ee0000f1;
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .logo {
   width: 100px;
@@ -54,4 +60,16 @@ ul {
   transition: ease-out;
   transition-duration: 0.3s;
   cursor: pointer;
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.search-input > input {
+  margin-right: 10px;
+}
+.search-input-field {
+  height: 50px;
+  border: 4px solid orange;
 }
