@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 export const Header = () => {
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  const handleLoginCLick = () => {
+    setIsLoggedIn(!isLoggedIn);
+  }
   return (
     <div className="header">
       <img
@@ -11,6 +17,7 @@ export const Header = () => {
           <li>About Us</li>
           <li>Contact us</li>
           <li>Cart</li>
+          <button onClick = {handleLoginCLick}>{isLoggedIn? 'Logout' : 'Login'}</button>
         </ul>
       </div>
     </div>

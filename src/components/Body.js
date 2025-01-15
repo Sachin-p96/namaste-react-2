@@ -10,6 +10,7 @@ import {
 
 export const Body = () => {
   const [filterRest, setFilterRest] = useState([]);
+  const [searchResultList,setSearchResultList] = useState(filterRest)
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,20 +19,22 @@ export const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.854899&lng=77.6679292&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const dataJson = await data.json();
-    console.log(
-      dataJson.data.cards[1].card.card.gridElements.infoWithStyle.restaurants,
-      "heyData"
-    );
+    
     setFilterRest(
-      dataJson.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      dataJson.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setSearchResultList(
+      dataJson.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
     );
   };
   const handleClick = (value) => {
     console.log("Hey Im Clicked", value);
-    const filteredList = restoDetails.filter((item) => {
+    const filteredList = filterRest.filter((item) => {
+      console.log(item.info.name,'item')
       return item.info.name.toUpperCase().includes(value.toUpperCase());
     });
-    setFilterRest(filteredList);
+    console.log(filteredList,"heyList")
+    setSearchResultList(filteredList);
   };
   console.log(filterRest);
   if (filterRest.length === 0) {
@@ -47,7 +50,7 @@ export const Body = () => {
         <SearchBar onClickFunction={handleClick} />
       </div>
       <div className="resto-container">
-        {filterRest.map((item, index) => {
+        {searchResultList.map((item, index) => {
           return (
             <RestoCard
               name={item.info.name}
