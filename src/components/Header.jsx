@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 export const Header = () => {
-  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLoginCLick = () => {
     setIsLoggedIn(!isLoggedIn);
-  }
+  };
   return (
     <div className="header">
       <img
@@ -13,11 +14,25 @@ export const Header = () => {
       />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact us</li>
-          <li>Cart</li>
-          <button onClick = {handleLoginCLick}>{isLoggedIn? 'Logout' : 'Login'}</button>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+
+          <li>
+            {" "}
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            {" "}
+            <Link>Cart</Link>
+          </li>
+
+          <button onClick={handleLoginCLick}>
+            {isLoggedIn ? "Logout" : "Login"}
+          </button>
         </ul>
       </div>
     </div>

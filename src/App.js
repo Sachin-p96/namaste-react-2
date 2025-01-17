@@ -3,14 +3,17 @@ import ReactDOM from "react-dom/client";
 import { Body } from "./components/Body";
 import { Header } from "./components/Header";
 import About from "./components/About";
-import { BrowserRouter, RouterProvider } from "react-router";
+import { BrowserRouter, Outlet, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router";
+import Error from "./components/Error";
+import Contact from "./components/Contact";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body />
+      <Outlet />
     </div>
   );
 };
@@ -18,12 +21,29 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />
-  },{
-    path:"/about",
-    element: <About />
-  },{}
-])
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/resto/:id",
+        element: <RestaurantMenu />,
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<RouterProvider router={appRouter} />);

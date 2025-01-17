@@ -10,7 +10,7 @@ import {
 
 export const Body = () => {
   const [filterRest, setFilterRest] = useState([]);
-  const [searchResultList,setSearchResultList] = useState(filterRest)
+  const [searchResultList, setSearchResultList] = useState(filterRest);
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,21 +19,21 @@ export const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.854899&lng=77.6679292&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const dataJson = await data.json();
-    
+
     setFilterRest(
-      dataJson.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      dataJson.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
     setSearchResultList(
-      dataJson.data.cards[2].card.card.gridElements.infoWithStyle.restaurants
+      dataJson.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
   };
   const handleClick = (value) => {
     console.log("Hey Im Clicked", value);
     const filteredList = filterRest.filter((item) => {
-      console.log(item.info.name,'item')
+      console.log(item.info.name, "item");
       return item.info.name.toUpperCase().includes(value.toUpperCase());
     });
-    console.log(filteredList,"heyList")
+    console.log(filteredList, "heyList");
     setSearchResultList(filteredList);
   };
   console.log(filterRest);
@@ -51,10 +51,12 @@ export const Body = () => {
       </div>
       <div className="resto-container">
         {searchResultList.map((item, index) => {
+          console.log(item, "HeyItembaba");
           return (
             <RestoCard
               name={item.info.name}
               imageId={item.info.cloudinaryImageId}
+              resId={item.info.id}
             />
           );
         })}
