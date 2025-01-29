@@ -17,7 +17,12 @@ const SearchBar = (props) => {
           value={searchValue}
           onChange={handleChange}
         ></input>
-        <button onClick={()=>props.onClickFunction(searchValue)}>Click me</button>
+        <button
+          className="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded"
+          onClick={() => props.onClickFunction(searchValue)}
+        >
+          Click me
+        </button>
       </div>
     </>
   );
