@@ -17,3 +17,14 @@ export const RestoCard = (props) => {
     </div>
   );
 };
+
+export const withPromotedLabel = (RestoCard) => {
+  return (props) => {
+    return (
+      <div className="">
+        <label className="absolute bg-black m-1 text-white">Promoted</label>
+        <RestoCard {...props} />
+      </div>
+    );
+  };
+};

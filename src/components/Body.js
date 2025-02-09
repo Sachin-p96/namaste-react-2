@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RestoCard } from "./RestoCard";
+import { RestoCard, withPromotedLabel } from "./RestoCard";
 import { restoDetails } from "../utils/constants";
 import SearchBar from "./SearchBar";
 import { Image, Breathing } from "react-shimmer";
@@ -27,6 +27,8 @@ export const Body = () => {
       dataJson.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
   };
+
+  const RestoCardWithLabel = withPromotedLabel(RestoCard);
   const handleClick = (value) => {
     console.log("Hey Im Clicked", value);
     const filteredList = filterRest.filter((item) => {
@@ -51,8 +53,14 @@ export const Body = () => {
       </div>
       <div className="resto-container">
         {searchResultList.map((item, index) => {
-          console.log(item, "HeyItembaba");
-          return (
+          console.log(item, "heyItem");
+          return item?.info.isOpen ? (
+            <RestoCardWithLabel
+              name={item.info.name}
+              imageId={item.info.cloudinaryImageId}
+              resId={item.info.id}
+            />
+          ) : (
             <RestoCard
               name={item.info.name}
               imageId={item.info.cloudinaryImageId}
