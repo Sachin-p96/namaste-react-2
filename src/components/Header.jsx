@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLoginCLick = () => {
     setIsLoggedIn(!isLoggedIn);
   };
+  const cartItems  = useSelector((store) => store.cart.items)
+  const userData = useContext(UserContext)
   return (
     <div className="header">
       <img
@@ -30,12 +34,16 @@ export const Header = () => {
           </li>
           <li>
             {" "}
-            <Link>Cart</Link>
+            <Link to="/cart">{`Cart (${cartItems.length} items)`}</Link>
           </li>
 
           <button onClick={handleLoginCLick}>
             {isLoggedIn ? "Logout" : "Login"}
           </button>
+          <li>
+            {" "}
+            {userData.loggedinUser};
+          </li>
         </ul>
       </div>
     </div>

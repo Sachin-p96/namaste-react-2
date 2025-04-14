@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { RestoCard, withPromotedLabel } from "./RestoCard";
 import { restoDetails } from "../utils/constants";
 import SearchBar from "./SearchBar";
@@ -7,6 +7,7 @@ import {
   ShimmerFeaturedGallery,
   ShimmerSimpleGallery,
 } from "react-shimmer-effects";
+import UserContext from "../utils/UserContext";
 
 export const Body = () => {
   const [filterRest, setFilterRest] = useState([]);
@@ -27,6 +28,7 @@ export const Body = () => {
       dataJson.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
     );
   };
+  const {loggedinUser,setUserName} = useContext(UserContext)
 
   const RestoCardWithLabel = withPromotedLabel(RestoCard);
   const handleClick = (value) => {
@@ -50,7 +52,17 @@ export const Body = () => {
     <div className="body">
       <div className="search-container">
         <SearchBar onClickFunction={handleClick} />
+        <div className="border-2 border-solid ml-8">
+          {" "}
+          <input
+            type="text"
+            
+            value={loggedinUser}
+            onChange={(e)=>setUserName(e.target.value)}
+          ></input>
+        </div>
       </div>
+      <div></div>
       <div className="resto-container">
         {searchResultList.map((item, index) => {
           console.log(item, "heyItem");
